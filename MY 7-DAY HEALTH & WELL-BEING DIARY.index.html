@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My 7-Day Health & Well-Being Diary</title>
+    <style>
+        :root {
+            --primary: #2e7d32;
+            --primary-light: #e8f5e9;
+            --secondary: #1565c0;
+            --text: #333;
+            --bg: #f5f7fa;
+            --card-bg: #ffffff;
+            --border: #cfd8dc;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: var(--bg); color: var(--text); padding: 20px; line-height: 1.6; }
+        .container { max-width: 800px; margin: 0 auto; background: var(--card-bg); padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        h1 { color: var(--primary); text-align: center; margin-bottom: 5px; font-size: 28px; }
+        .subtitle { text-align: center; color: #666; margin-bottom: 30px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .metadata-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 30px; background: #fafafa; padding: 15px; border-radius: 8px; border: 1px solid var(--border); }
+        .meta-field label { font-size: 12px; font-weight: bold; color: #555; display: block; margin-bottom: 5px; }
+        .meta-field input { width: 100%; padding: 8px; border: 1px solid var(--border); border-radius: 4px; font-size: 14px; }
+
+        .day-card { border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin-bottom: 20px; background: var(--card-bg); transition: transform 0.2s; }
+        .day-card:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
+        .day-title { color: var(--primary); font-size: 18px; margin-bottom: 15px; border-bottom: 2px solid var(--primary-light); padding-bottom: 5px; font-weight: 700; }
+        
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .metric-group { margin-bottom: 12px; }
+        .metric-group label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+        
+        input[type="number"], select { width: 100%; padding: 8px; border: 1px solid var(--border); border-radius: 4px; font-size: 14px; background: #fff; }
+        
+        .water-container { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+        .water-box { width: 30px; height: 30px; border: 2px solid #64b5f6; border-radius: 6px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 14px; user-select: none; transition: all 0.2s; color: #64b5f6; font-weight: bold; }
+        .water-box.active { background-color: #2196f3; color: white; border-color: #2196f3; }
+        
+        .radio-toggle, .checkbox-group { display: flex; gap: 15px; align-items: center; margin-top: 5px; }
+        .radio-toggle label, .checkbox-group label { font-weight: normal; font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 5px; }
+        
+        .reflection-section { margin-top: 4px; padding-top: 20px; border-top: 2px dashed var(--border); }
+        .reflection-section h3 { color: var(--secondary); margin-bottom: 15px; font-size: 20px; }
+        .textarea-group { margin-bottom: 15px; }
+        .textarea-group label { display: block; font-weight: 600; font-size: 14px; margin-bottom: 5px; }
+        textarea { width: 100%; height: 80px; padding: 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 14px; resize: vertical; }
+        
+        .btn-submit { display: block; width: 100%; padding: 15px; background: var(--primary); color: white; border: none; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 25px; transition: background 0.2s; }
+        .btn-submit:hover { background: #1b5e20; }
+
+        @media (max-width: 600px) { body { padding: 10px; } .container { padding: 15px; } }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>MY 7-DAY HEALTH & WELL-BEING DIARY</h1>
+    <div class="subtitle">Class VIII Science Practical Project</div>
+    
+    <!-- Student Metadata -->
+    <div class="metadata-grid">
+        <div class="meta-field"><label>STUDENT NAME</label><input type="text" placeholder="Enter full name"></div>
+        <div class="meta-field"><label>CLASS & SECTION</label><input type="text" value="VIII - " placeholder="e.g. VIII - A"></div>
+        <div class="meta-field"><label>ROLL NUMBER</label><input type="text" placeholder="Enter Roll No."></div>
+        <div class="meta-field"><label>WEEK STARTING</label><input type="date"></div>
+    </div>
+
+    <!-- Container where the 7 Days Javascript generated loops will sit -->
+    <div id="days-wrapper"></div>
+
+    <!-- Final Reflection Section -->
+    <div class="reflection-section">
+        <h3>End-of-Week Reflection</h3>
+        <div class="textarea-group">
+            <label>1. Physical Assessment: Did you reach your target sleep and water intake goals? How did it impact your energy?</label>
+            <textarea placeholder="Write your physical observations here..."></textarea>
+        </div>
+        <div class="textarea-group">
+            <label>2. Mental & Social Assessment: How did your total screen time affect your mood? Did face-to-face chats help?</label>
+            <textarea placeholder="Write your mental/social observations here..."></textarea>
+        </div>
+        <div class="textarea-group">
+            <label>3. Future Goal: Name one specific habit from Ayurvedic Dinacharya you want to stick with next week.</label>
+            <textarea placeholder="e.g., Waking up 10 minutes earlier, practicing mindful breathing..."></textarea>
+        </div>
+    </div>
+
+    <button class="btn-submit" onclick="window.print()">Print / Save as PDF for Submission</button>
+</div>
+
+<script>
+    // Dynamically generate the 7 logs to keep the code clean and scannable
+    const daysWrapper = document.getElementById('days-wrapper');
+    for (let i = 1; i <= 7; i++) {
+        const card = document.createElement('div');
+        card.className = 'day-card';
+        card.innerHTML = `
+            <div class="day-title">DAY ${i}</div>
+            <div class="grid-2">
+                <div>
+                    <div class="metric-group">
+                        <label>Sleep Duration (Target: 8 Hours)</label>
+                        <input type="number" min="0" max="24" step="0.5" placeholder="Hours spent sleeping">
+                    </div>
+                    <div class="metric-group">
+                        <label>Active Outdoor Play / Exercise</label>
+                        <input type="number" min="0" max="480" placeholder="Minutes active">
+                    </div>
+                    <div class="metric-group">
+                        <label>Water Intake (Target: 8 Glasses)</label>
+                        <div class="water-container" id="water-day-${i}">
+                            ${Array(8).fill(0).map((_, glass) => `<div class="water-box" onclick="toggleWater(this)">${glass + 1}</div>`).join('')}
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="metric-group">
+                        <label>Junk Food Consumed?</label>
+                        <div class="radio-toggle">
+                            <label><input type="radio" name="junk-${i}" value="yes"> Yes</label>
+                            <label><input type="radio" name="junk-${i}" value="no" checked> No</label>
+                        </div>
+                    </div>
+                    <div class="metric-group">
+                        <label>Screen Time (Non-School)</label>
+                        <input type="number" min="0" max="24" step="0.5" placeholder="Hours on devices">
+                    </div>
+                    <div class="metric-group">
+                        <label>Face-to-Face Chat with Friend/Family?</label>
+                        <div class="radio-toggle">
+                            <label><input type="radio" name="chat-${i}" value="yes" checked> Yes</label>
+                            <label><input type="radio" name="chat-${i}" value="no"> No</label>
+                        </div>
+                    </div>
+                    <div class="metric-group">
+                        <label>Today I felt:</label>
+                        <select>
+                            <option value="happy">😀 Happy & Energetic</option>
+                            <option value="calm">😌 Calm & Focused</option>
+                            <option value="tired">🥱 Tired / Sleepy</option>
+                            <option value="stressed">😰 Stressed / Anxious</option>
+                            <option value="lonely">😔 Lonely / Low</option>
+                        </select>
+                    </div>
+                    <div class="metric-group">
+                        <label>Dinacharya Followed? (Clean Tongue, Early Rise, Breathe)</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox"> Done</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        daysWrapper.appendChild(card);
+    }
+
+    // Function to visually fill glass boxes interactively
+    function toggleWater(element) {
+        element.classList.toggle('active');
+    }
+</script>
+
+</body>
+</html>
